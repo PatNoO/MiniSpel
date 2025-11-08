@@ -1,8 +1,8 @@
 <resources>
     <string name="app_name">MiniSpel</string>
     <string name="greeting">Welcome to this mini math game</string>
-<!--    <string name="app_name">MiniSpel</string>-->
-<!--    <string name="app_name">MiniSpel</string>-->
+    <string name="generate_nr_button">New</string>
+    <string name="user_guess_button">Enter</string>
 
 
 </resources>
