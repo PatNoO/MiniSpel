@@ -10,4 +10,8 @@
     <string name="division_question">%1$d / %2$d .. = ?</string>
     <string name="correct_answer">Jippie, Rätt svar ! 🥳</string>
     <string name="wrong_answer">Attans .. Fel svar ! 💀 </string>
+    <string name="answer_edit">Svar</string>
+    <string name="name_edit">Namn</string>
+    <string name="wins_loses">Vinnster : %1$d \nFörluster : %2$d</string>
+
 </resources>

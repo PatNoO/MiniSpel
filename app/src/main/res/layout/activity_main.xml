@@ -56,9 +56,10 @@
             android:layout_width="88dp"
             android:layout_height="48dp"
             android:layout_marginTop="62dp"
-            android:layout_marginLeft="22dp"
+            android:layout_marginStart="22dp"
             android:ems="10"
-            android:hint="...."
+            android:hint="@string/answer_edit"
+            android:textColor="@color/white"
             android:inputType="number"
              />
 
@@ -66,7 +67,7 @@
             android:id="@+id/enterButtonAm"
             android:layout_width="92dp"
             android:layout_height="62dp"
-            android:layout_marginLeft="152dp"
+            android:layout_marginStart="152dp"
             android:layout_marginTop="52dp"
             android:text="@string/user_guess_button" />
     </androidx.cardview.widget.CardView>
@@ -76,7 +77,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="52dp"
-        android:text="Antal Vinster/Förluster"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cardView" />
@@ -87,7 +87,7 @@
         android:layout_height="48dp"
         android:layout_marginBottom="68dp"
         android:ems="10"
-        android:hint="Skriv in erat namn"
+        android:hint="@string/name_edit"
         android:inputType="text"
         android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="parent"

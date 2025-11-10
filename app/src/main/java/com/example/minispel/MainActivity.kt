@@ -1,5 +1,7 @@
 package com.example.minispel
 
+import android.annotation.SuppressLint
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
@@ -11,13 +13,16 @@ import android.widget.Spinner
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.edit
 
-lateinit var spinnerMa: Spinner
-lateinit var questionTxtViewMa: TextView
-lateinit var userAnswerEditMa: EditText
-lateinit var winLoseTxtViewMa: TextView
-lateinit var nameEditMa: EditText
-var correctAnswer: Int = 0
+private lateinit var spinnerMa: Spinner
+private lateinit var questionTxtViewMa: TextView
+private lateinit var userAnswerEditMa: EditText
+private lateinit var winLoseTxtViewMa: TextView
+private lateinit var nameEditMa: EditText
+private var wins : Int = 0
+private var loses : Int = 0
+private var correctAnswer: Int = 0
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,19 +37,52 @@ class MainActivity : AppCompatActivity() {
         winLoseTxtViewMa = findViewById(R.id.winLoseTxtViewAm)
 
 
+//        spinner()
 
         val enterButtonMa = findViewById<Button>(R.id.enterButtonAm)
 
         enterButtonMa.setOnClickListener {
+
+            if (userAnswerEditMa.text.isEmpty()) {
+                Toast.makeText(this, "Skriv in ett tal först!", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
             handleAnswer()
             userAnswerEditMa.text.clear()
+
         }
 
     }
 
+    //----End of onCreate---//
+
+
     override fun onResume(){
         super.onResume()
         spinner()
+
+        val sharedPrefMa = getSharedPreferences("math_score", Context.MODE_PRIVATE)
+        wins =sharedPrefMa.getInt("wins", 0)
+        loses = sharedPrefMa.getInt("loses",0)
+
+        winLoseTxtViewMa.text = getString(R.string.wins_loses, wins, loses)
+
+    }
+
+    fun resetSharedPref () {
+        val sharedPrefMa = getSharedPreferences("math_score", Context.MODE_PRIVATE)
+
+        wins = 0
+        loses = 0
+        sharedPrefMa.edit().apply{
+            putInt("wins", 0)
+            putInt("loses", 0)
+            apply()
+        }
+
+        winLoseTxtViewMa.text = getString(R.string.wins_loses, wins, loses)
+
+        Toast.makeText(this,"ScoreBoard is clear",Toast.LENGTH_SHORT).show()
     }
 
     private fun spinner() {
@@ -54,7 +92,7 @@ class MainActivity : AppCompatActivity() {
         spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
 
         spinnerMa.adapter = spinnerAdapter
-
+        
         spinnerMa.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(
                 parent: AdapterView<*>?,
@@ -62,13 +100,13 @@ class MainActivity : AppCompatActivity() {
                 position: Int,
                 id: Long
 
+
             ) {
                 setNewQuestion(position)
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {
             }
-
         }
     }
 
@@ -118,17 +156,11 @@ class MainActivity : AppCompatActivity() {
 
         startActivity(intent)
 
-        spinner()
     }
 
     fun checkWin(): Boolean {
         val userAnswerText = userAnswerEditMa.text.toString()
         val userAnswer = userAnswerText.toIntOrNull()
-
-        if (userAnswer == null) {
-            Toast.makeText(this, "Skriv in ett tal först!", Toast.LENGTH_SHORT).show()
-            return false
-        }
 
         return userAnswer == correctAnswer
     }
