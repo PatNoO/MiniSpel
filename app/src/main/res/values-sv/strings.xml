@@ -1,14 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">MiniSpel</string>
-    <string name="greeting">Welcome to this mini math game</string>
-    <string name="generate_nr_button">New</string>
+    <string name="greeting">Välkommen till Mini math game 📝 </string>
+    <string name="generate_nr_button">Ny siffra</string>
     <string name="user_guess_button">Enter</string>
     <string name="addition_question">%1$d + %2$d .. = ?</string>
     <string name="subtrack_question">%1$d - %2$d .. = ?</string>
     <string name="multiplication_question">%1$d * %2$d .. = ?</string>
     <string name="division_question">%1$d / %2$d .. = ?</string>
-    <string name="correct_answer">Wohoo, Correct answer! 🥳</string>
-    <string name="wrong_answer">Shit.. Wrong answer ! 💀 </string>
-
-
+    <string name="correct_answer">Jippie, Rätt svar ! 🥳</string>
+    <string name="wrong_answer">Attans .. Fel svar ! 💀 </string>
 </resources>

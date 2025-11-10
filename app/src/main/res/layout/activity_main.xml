@@ -59,23 +59,15 @@
             android:layout_marginLeft="22dp"
             android:ems="10"
             android:hint="...."
-            android:inputType="text"
+            android:inputType="number"
              />
-
-        <Button
-            android:id="@+id/newNrButtonAm"
-            android:layout_width="92dp"
-            android:layout_height="62dp"
-            android:layout_marginTop="12dp"
-            android:layout_marginLeft="152dp"
-            android:text="@string/generate_nr_button" />
 
         <Button
             android:id="@+id/enterButtonAm"
             android:layout_width="92dp"
             android:layout_height="62dp"
-            android:layout_marginTop="88dp"
             android:layout_marginLeft="152dp"
+            android:layout_marginTop="52dp"
             android:text="@string/user_guess_button" />
     </androidx.cardview.widget.CardView>
 
