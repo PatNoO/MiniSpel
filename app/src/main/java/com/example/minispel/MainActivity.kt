@@ -1,5 +1,6 @@
 package com.example.minispel
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.AdapterView
@@ -30,14 +31,20 @@ class MainActivity : AppCompatActivity() {
         nameEditMa = findViewById(R.id.nameEditAm)
         winLoseTxtViewMa = findViewById(R.id.winLoseTxtViewAm)
 
-        spinner()
+
 
         val enterButtonMa = findViewById<Button>(R.id.enterButtonAm)
 
         enterButtonMa.setOnClickListener {
             handleAnswer()
+            userAnswerEditMa.text.clear()
         }
 
+    }
+
+    override fun onResume(){
+        super.onResume()
+        spinner()
     }
 
     private fun spinner() {
@@ -106,13 +113,11 @@ class MainActivity : AppCompatActivity() {
     fun handleAnswer() {
         val answeredCorrect = checkWin()
 
+        val intent = Intent(this, AnswerActivity::class.java)
+        intent.putExtra("answeredCorrect", answeredCorrect )
 
-        if (answeredCorrect) {
-            winLoseTxtViewMa.text = getString(R.string.correct_answer)
-        } else {
-            winLoseTxtViewMa.text = getString(R.string.wrong_answer)
+        startActivity(intent)
 
-        }
         spinner()
     }
 

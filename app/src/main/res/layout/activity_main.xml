@@ -59,7 +59,7 @@
             android:layout_marginLeft="22dp"
             android:ems="10"
             android:hint="...."
-            android:inputType="text"
+            android:inputType="number"
              />
 
         <Button
