@@ -73,28 +73,29 @@ class MainActivity : AppCompatActivity() {
             0 -> {
                 Toast.makeText(this, "Addition (+)", Toast.LENGTH_SHORT).show()
                 correctAnswer = firstNr + secondNr
-                questionTxtViewMa.text = "$firstNr + $secondNr .. = ?"
+                questionTxtViewMa.text = getString(R.string.addition_question, firstNr, secondNr)
 
             }
 
             1 -> {
                 Toast.makeText(this, "Subtration (-)", Toast.LENGTH_SHORT).show()
                 correctAnswer = firstNr - secondNr
-                questionTxtViewMa.text = "$firstNr - $secondNr .. = ?"
+                questionTxtViewMa.text = getString(R.string.subtrack_question, firstNr, secondNr)
 
             }
 
             2 -> {
                 Toast.makeText(this, "Multiplikatin (*)", Toast.LENGTH_SHORT).show()
                 correctAnswer = firstNr * secondNr
-                questionTxtViewMa.text = "$firstNr * $secondNr .. = ?"
+                questionTxtViewMa.text =
+                    getString(R.string.multiplication_question, firstNr, secondNr)
 
             }
 
             3 -> {
                 Toast.makeText(this, "division (/)", Toast.LENGTH_SHORT).show()
                 correctAnswer = firstNr / secondNr
-                questionTxtViewMa.text = "$firstNr / $secondNr .. = ?"
+                questionTxtViewMa.text = getString(R.string.division_question, firstNr, secondNr)
 
             }
 
@@ -107,9 +108,9 @@ class MainActivity : AppCompatActivity() {
 
 
         if (answeredCorrect) {
-            winLoseTxtViewMa.text = "Jippie du svarade rätt"
+            winLoseTxtViewMa.text = getString(R.string.correct_answer)
         } else {
-            winLoseTxtViewMa.text = "Attans du svarade fel "
+            winLoseTxtViewMa.text = getString(R.string.wrong_answer)
 
         }
         spinner()
