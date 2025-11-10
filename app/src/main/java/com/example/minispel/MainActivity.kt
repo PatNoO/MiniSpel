@@ -69,6 +69,22 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+    fun resetSharedPref () {
+        val sharedPrefMa = getSharedPreferences("math_score", Context.MODE_PRIVATE)
+
+        wins = 0
+        loses = 0
+        sharedPrefMa.edit().apply{
+            putInt("wins", 0)
+            putInt("loses", 0)
+            apply()
+        }
+
+        winLoseTxtViewMa.text = getString(R.string.wins_loses, wins, loses)
+
+        Toast.makeText(this,"ScoreBoard is clear",Toast.LENGTH_SHORT).show()
+    }
+
     private fun spinner() {
         val categories =
             arrayOf("Addition (+)", "Subtration (-)", "Multiplikation (*)", "division(/)")
@@ -134,12 +150,6 @@ class MainActivity : AppCompatActivity() {
 
     fun handleAnswer() {
         val answeredCorrect = checkWin()
-
-//        if (!answeredCorrect){
-//            loses ++
-//        } else {
-//            wins ++
-//        }
 
         val intent = Intent(this, AnswerActivity::class.java)
         intent.putExtra("answeredCorrect", answeredCorrect )
