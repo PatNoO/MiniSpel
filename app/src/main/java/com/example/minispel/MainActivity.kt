@@ -1,6 +1,7 @@
 package com.example.minispel
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
@@ -18,9 +19,7 @@ private lateinit var spinnerMa: Spinner
 private lateinit var questionTxtViewMa: TextView
 private lateinit var userAnswerEditMa: EditText
 private lateinit var winLoseTxtViewMa: TextView
-
 private lateinit var nameEditMa: EditText
-
 private var wins : Int = 0
 private var loses : Int = 0
 private var correctAnswer: Int = 0
@@ -38,7 +37,7 @@ class MainActivity : AppCompatActivity() {
         winLoseTxtViewMa = findViewById(R.id.winLoseTxtViewAm)
 
 
-        spinner()
+//        spinner()
 
         val enterButtonMa = findViewById<Button>(R.id.enterButtonAm)
 
@@ -50,16 +49,24 @@ class MainActivity : AppCompatActivity() {
             }
             handleAnswer()
             userAnswerEditMa.text.clear()
-        }
 
+        }
 
     }
 
     //----End of onCreate---//
 
+
     override fun onResume(){
         super.onResume()
+        spinner()
+
+        val sharedPrefMa = getSharedPreferences("math_score", Context.MODE_PRIVATE)
+        wins =sharedPrefMa.getInt("wins", 0)
+        loses = sharedPrefMa.getInt("loses",0)
+
         winLoseTxtViewMa.text = getString(R.string.wins_loses, wins, loses)
+
     }
 
     private fun spinner() {
@@ -128,11 +135,11 @@ class MainActivity : AppCompatActivity() {
     fun handleAnswer() {
         val answeredCorrect = checkWin()
 
-        if (!answeredCorrect){
-            loses ++
-        } else {
-            wins ++
-        }
+//        if (!answeredCorrect){
+//            loses ++
+//        } else {
+//            wins ++
+//        }
 
         val intent = Intent(this, AnswerActivity::class.java)
         intent.putExtra("answeredCorrect", answeredCorrect )
