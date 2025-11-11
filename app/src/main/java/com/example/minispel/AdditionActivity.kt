@@ -26,7 +26,6 @@ class AdditionActivity : AppCompatActivity() {
     var firstNumber  = 0
     var secondNumber = 0
     var correctAnswer = 0
-//    var answer = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,7 +34,7 @@ class AdditionActivity : AppCompatActivity() {
         spinnerDifficultyAdA = findViewById(R.id.spinnerDifficultyAcA)
         questionTextAdA = findViewById(R.id.questionTextAcA)
         winLoseTextAdA = findViewById(R.id.resultViewAcA)
-        answerTextAdA = findViewById(R.id.text_answerAcA)
+        answerTextAdA = findViewById(R.id.answerInputAda)
 
         spinner()
 
@@ -44,15 +43,12 @@ class AdditionActivity : AppCompatActivity() {
 
         enterButtonAdA.setOnClickListener {
 
-            val textAdA = answerTextAdA.text?.toString()?.trim()
-
-            if (textAdA.isNullOrEmpty()){
-                Toast.makeText(this,"Can't be Empty",Toast.LENGTH_SHORT).show()
-            } else {
+            if (answerTextAdA.text.isNullOrEmpty()){
+                Toast.makeText(this,"Field cannot be empty", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
                 handleAnswer()
                 answerTextAdA.text?.clear()
-
-            }
         }
 
         backButtonAdA.setOnClickListener {

@@ -29,7 +29,7 @@ class MainActivity : AppCompatActivity() {
 
         setContentView(R.layout.activity_main)
 
-        spinnerMa = findViewById(R.id.spinnerDifficultyAcA)
+        spinnerMa = findViewById(R.id.spinnerAm)
         questionTxtViewMa = findViewById(R.id.questionTxtViewAm)
         userAnswerEditMa = findViewById(R.id.userAnswerEditAm)
 //        nameEditMa = findViewById(R.id.nameEditAm)
@@ -38,7 +38,7 @@ class MainActivity : AppCompatActivity() {
 
 //        spinner()
 
-        val enterButtonMa = findViewById<Button>(R.id.enterButtonAcA)
+        val enterButtonMa = findViewById<Button>(R.id.enterButtonAm)
 
 //        enterButtonMa.setOnClickListener {
 //
@@ -128,27 +128,27 @@ class MainActivity : AppCompatActivity() {
             }
 
             2 -> {
-                Toast.makeText(this, "Addition (+)", Toast.LENGTH_SHORT).show()
-                val intent = Intent(this, AdditionActivity::class.java)
-                startActivity(intent)
+//                Toast.makeText(this, "Addition (+)", Toast.LENGTH_SHORT).show()
+//                val intent = Intent(this, AdditionActivity::class.java)
+//                startActivity(intent)
 //                Toast.makeText(this, "Subtration (-)", Toast.LENGTH_SHORT).show()
 //                correctAnswer = firstNr - secondNr
 //                questionTxtViewMa.text = getString(R.string.subtrack_question, firstNr, secondNr)
             }
 
             3 -> {
-                Toast.makeText(this, "Addition (+)", Toast.LENGTH_SHORT).show()
-                val intent = Intent(this, AdditionActivity::class.java)
-                startActivity(intent)
+//                Toast.makeText(this, "Addition (+)", Toast.LENGTH_SHORT).show()
+//                val intent = Intent(this, AdditionActivity::class.java)
+//                startActivity(intent)
 //                Toast.makeText(this, "Multiplikatin (*)", Toast.LENGTH_SHORT).show()
 //                correctAnswer = firstNr * secondNr
 //                questionTxtViewMa.text =
 //                    getString(R.string.multiplication_question, firstNr, secondNr)
             }
             4 -> {
-                Toast.makeText(this, "Addition (+)", Toast.LENGTH_SHORT).show()
-                val intent = Intent(this, AdditionActivity::class.java)
-                startActivity(intent)
+//                Toast.makeText(this, "Addition (+)", Toast.LENGTH_SHORT).show()
+//                val intent = Intent(this, AdditionActivity::class.java)
+//                startActivity(intent)
 //                Toast.makeText(this, "division (/)", Toast.LENGTH_SHORT).show()
 //                correctAnswer = firstNr / secondNr
 //                questionTxtViewMa.text = getString(R.string.division_question, firstNr, secondNr)
@@ -159,21 +159,21 @@ class MainActivity : AppCompatActivity() {
     }
 
     //---use in activity----//--//--//--//--//--/7
-    fun handleAnswer() {
-        val answeredCorrect = checkWin()
+//    fun handleAnswer() {
+//        val answeredCorrect = checkWin()
+//
+//        val intent = Intent(this, AnswerActivity::class.java)
+//        intent.putExtra("answeredCorrect", answeredCorrect )
+//
+//        startActivity(intent)
+//
+//    }
 
-        val intent = Intent(this, AnswerActivity::class.java)
-        intent.putExtra("answeredCorrect", answeredCorrect )
-
-        startActivity(intent)
-
-    }
-
-    fun checkWin(): Boolean {
-        val userAnswerText = userAnswerEditMa.text.toString()
-        val userAnswer = userAnswerText.toIntOrNull()
-
-        return userAnswer == correctAnswer
-    }
+//    fun checkWin(): Boolean {
+//        val userAnswerText = userAnswerEditMa.text.toString()
+//        val userAnswer = userAnswerText.toIntOrNull()
+//
+//        return userAnswer == correctAnswer
+//    }
 
 }
