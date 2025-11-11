@@ -23,6 +23,7 @@ class AdditionActivity : AppCompatActivity() {
     private lateinit var spinnerDifficultyAdA : Spinner
     private lateinit var resultViewAdA : TextView
     private lateinit var answerTextAdA : TextInputEditText
+    private var currentDifficulty = 0
     var firstNumber  = 0
     var secondNumber = 0
     var correctAnswer = 0
@@ -49,6 +50,7 @@ class AdditionActivity : AppCompatActivity() {
             }
                 handleAnswer()
                 answerTextAdA.text?.clear()
+            setDifficulty(currentDifficulty )
         }
 
         backButtonAdA.setOnClickListener {
@@ -100,7 +102,6 @@ class AdditionActivity : AppCompatActivity() {
                 position: Int,
                 id: Long
 
-
             ) {
                 setDifficulty(position)
             }
@@ -111,6 +112,8 @@ class AdditionActivity : AppCompatActivity() {
     }
 
     fun setDifficulty (position : Int) {
+
+        currentDifficulty = position
 
         when (position) {
             0 -> {
