@@ -22,7 +22,6 @@ class AnswerActivity : AppCompatActivity() {
 
         val answer = intent.getBooleanExtra("answeredCorrect", false)
 
-
         val sharedPref =getSharedPreferences("math_score", Context.MODE_PRIVATE)
 
         var wins = sharedPref.getInt("wins", 0)

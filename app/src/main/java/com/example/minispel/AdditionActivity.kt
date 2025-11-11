@@ -1,13 +1,17 @@
 package com.example.minispel
 
+import android.content.Context
 import android.os.Bundle
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.Button
+import android.widget.EditText
 import android.widget.Spinner
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.material.textfield.TextInputEditText
 
 
 class AdditionActivity : AppCompatActivity() {
@@ -17,9 +21,12 @@ class AdditionActivity : AppCompatActivity() {
     private lateinit var winLoseTextAdA : TextView
 
     private lateinit var spinnerDifficultyAdA : Spinner
-
+    private lateinit var resultViewAdA : TextView
+    private lateinit var answerTextAdA : TextInputEditText
     var firstNumber  = 0
     var secondNumber = 0
+    var correctAnswer = 0
+//    var answer = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,9 +34,58 @@ class AdditionActivity : AppCompatActivity() {
 
         spinnerDifficultyAdA = findViewById(R.id.spinnerDifficultyAcA)
         questionTextAdA = findViewById(R.id.questionTextAcA)
-        winLoseTextAdA = findViewById(R.id.winLoseTextAcA)
+        winLoseTextAdA = findViewById(R.id.resultViewAcA)
+        answerTextAdA = findViewById(R.id.text_answerAcA)
 
         spinner()
+
+        val enterButtonAdA = findViewById<Button>(R.id.enterButtonAcA)
+        val backButtonAdA = findViewById<Button>(R.id.backButtonAcA)
+
+        enterButtonAdA.setOnClickListener {
+
+            val textAdA = answerTextAdA.text?.toString()?.trim()
+
+            if (textAdA.isNullOrEmpty()){
+                Toast.makeText(this,"Can't be Empty",Toast.LENGTH_SHORT).show()
+            } else {
+                handleAnswer()
+                answerTextAdA.text?.clear()
+
+            }
+        }
+
+        backButtonAdA.setOnClickListener {
+            finish()
+        }
+    }
+
+    private fun handleAnswer() {
+        resultViewAdA = findViewById(R.id.resultViewAcA)
+
+
+        val userAnswerText = answerTextAdA.text.toString()
+        val userAnswer = userAnswerText.toIntOrNull()
+
+        val sharedPref = getSharedPreferences("addition_score", MODE_PRIVATE)
+
+        var wins = sharedPref.getInt("add_wins", 0)
+        var loses = sharedPref.getInt("add_loses", 0)
+
+        if (userAnswer == correctAnswer) {
+            wins++
+            winLoseTextAdA.text = getString(R.string.correct_answer)
+        } else {
+            loses++
+            winLoseTextAdA.text = getString(R.string.wrong_answer)
+        }
+
+        sharedPref.edit().apply {
+            putInt("add_wins", wins)
+            putInt("add_loses", loses)
+            apply()
+        }
+
 
     }
 
@@ -65,24 +121,28 @@ class AdditionActivity : AppCompatActivity() {
                 Toast.makeText(this, "Your choice ' Easy ' ",Toast.LENGTH_SHORT).show()
                 firstNumber = (1..10).random()
                 secondNumber = (1..10).random()
+                correctAnswer = firstNumber + secondNumber
                 questionTextAdA.text = getString(R.string.addition_question, firstNumber, secondNumber)
             }
             1 -> {
                 Toast.makeText(this, "Your choice ' Medium ' ",Toast.LENGTH_SHORT).show()
-                firstNumber = (1..20).random()
-                secondNumber = (1..30).random()
+                firstNumber = (10..20).random()
+                secondNumber = (10..30).random()
+                correctAnswer = firstNumber + secondNumber
                 questionTextAdA.text = getString(R.string.addition_question, firstNumber, secondNumber)
             }
             2 -> {
                 Toast.makeText(this, "Your choice ' Hard ' ",Toast.LENGTH_SHORT).show()
-                firstNumber = (1..30).random()
-                secondNumber = (1..40).random()
+                firstNumber = (10..30).random()
+                secondNumber = (10..40).random()
+                correctAnswer = firstNumber + secondNumber
                 questionTextAdA.text = getString(R.string.addition_question, firstNumber, secondNumber)
             }
             3 -> {
                 Toast.makeText(this, "Your choice ' SuperHard ' ",Toast.LENGTH_SHORT).show()
-                firstNumber = (1..100).random()
-                secondNumber = (1..350).random()
+                firstNumber = (30..100).random()
+                secondNumber = (20..350).random()
+                correctAnswer = firstNumber + secondNumber
                 questionTextAdA.text = getString(R.string.addition_question, firstNumber, secondNumber)
             }
         }

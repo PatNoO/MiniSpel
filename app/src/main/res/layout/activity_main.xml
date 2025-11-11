@@ -64,7 +64,7 @@
              />
 
         <Button
-            android:id="@+id/enterButton"
+            android:id="@+id/enterButtonAcA"
             android:layout_width="92dp"
             android:layout_height="62dp"
             android:layout_marginStart="152dp"
