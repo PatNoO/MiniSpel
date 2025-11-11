@@ -1,7 +1,5 @@
 package com.example.minispel
 
-import android.annotation.SuppressLint
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
@@ -13,13 +11,14 @@ import android.widget.Spinner
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.edit
+import com.google.android.material.button.MaterialSplitButton
 
 private lateinit var spinnerMa: Spinner
 private lateinit var questionTxtViewMa: TextView
 private lateinit var userAnswerEditMa: EditText
 private lateinit var winLoseTxtViewMa: TextView
 private lateinit var nameEditMa: EditText
+private lateinit var materialSplitButton: MaterialSplitButton
 private var wins : Int = 0
 private var loses : Int = 0
 private var correctAnswer: Int = 0
@@ -30,16 +29,16 @@ class MainActivity : AppCompatActivity() {
 
         setContentView(R.layout.activity_main)
 
-        spinnerMa = findViewById(R.id.spinnerAm)
+        spinnerMa = findViewById(R.id.spinnerDifficultyAcA)
         questionTxtViewMa = findViewById(R.id.questionTxtViewAm)
         userAnswerEditMa = findViewById(R.id.userAnswerEditAm)
-        nameEditMa = findViewById(R.id.nameEditAm)
+//        nameEditMa = findViewById(R.id.nameEditAm)
         winLoseTxtViewMa = findViewById(R.id.winLoseTxtViewAm)
 
 
 //        spinner()
 
-        val enterButtonMa = findViewById<Button>(R.id.enterButtonAm)
+        val enterButtonMa = findViewById<Button>(R.id.enterButton)
 
         enterButtonMa.setOnClickListener {
 
@@ -52,6 +51,7 @@ class MainActivity : AppCompatActivity() {
 
         }
 
+
     }
 
     //----End of onCreate---//
@@ -61,7 +61,7 @@ class MainActivity : AppCompatActivity() {
         super.onResume()
         spinner()
 
-        val sharedPrefMa = getSharedPreferences("math_score", Context.MODE_PRIVATE)
+        val sharedPrefMa = getSharedPreferences("math_score", MODE_PRIVATE)
         wins =sharedPrefMa.getInt("wins", 0)
         loses = sharedPrefMa.getInt("loses",0)
 
@@ -70,7 +70,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun resetSharedPref () {
-        val sharedPrefMa = getSharedPreferences("math_score", Context.MODE_PRIVATE)
+        val sharedPrefMa = getSharedPreferences("math_score", MODE_PRIVATE)
 
         wins = 0
         loses = 0
@@ -117,8 +117,12 @@ class MainActivity : AppCompatActivity() {
         when (position) {
             0 -> {
                 Toast.makeText(this, "Addition (+)", Toast.LENGTH_SHORT).show()
-                correctAnswer = firstNr + secondNr
-                questionTxtViewMa.text = getString(R.string.addition_question, firstNr, secondNr)
+                val intent = Intent(this, AdditionActivity::class.java)
+                startActivity(intent)
+
+//                correctAnswer = firstNr + secondNr
+//                questionTxtViewMa.text = getString(R.string.addition_question, firstNr, secondNr)
+
 
             }
 
@@ -148,6 +152,7 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+    //---use in activity----//--//--//--//--//--/7
     fun handleAnswer() {
         val answeredCorrect = checkWin()
 
