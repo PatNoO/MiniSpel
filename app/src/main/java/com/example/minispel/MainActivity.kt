@@ -1,5 +1,6 @@
 package com.example.minispel
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
@@ -11,34 +12,28 @@ import android.widget.Spinner
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.google.android.material.button.MaterialSplitButton
-
-private lateinit var spinnerMa: Spinner
-
-private lateinit var winLoseTxtViewMa: TextView
-
-//private var wins: Int = 0
-//private var loses: Int = 0
-//private var addWins = 0
-//private var addLoses = 0
-//
-//private val subWin = 0
-//private val subLoses = 0
-//
-//private val multiWin = 0
-//private val multiLoses = 0
-//
-//private val divWin = 0
-//private val divLoses = 0
 
 class MainActivity : AppCompatActivity() {
+
+    private lateinit var spinnerMa: Spinner
+
+
+    private lateinit var winLoseTxtViewMa: TextView
+
+    private var player = Player ("Default",0,0)
+
+//    private var
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         setContentView(R.layout.activity_main)
 
-        spinnerMa = findViewById(R.id.spinnerAm)
+        val intent = Intent(this, StartActivity::class.java)
+        intent.putExtra("player", player)
+        startActivity(intent)
+        onPause()
 
+        spinnerMa = findViewById(R.id.spinnerAm)
 
     }
 

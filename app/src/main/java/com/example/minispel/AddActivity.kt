@@ -20,7 +20,7 @@ class AddActivity : AppCompatActivity() {
 
     private lateinit var spinnerDifficultyAdA: Spinner
     private lateinit var resultViewAdA: TextView
-    private lateinit var answerTextAdA: TextInputEditText
+    private lateinit var answerInputAdA: TextInputEditText
     private var currentDifficulty = 0
     var firstNumber = 0
     var secondNumber = 0
@@ -33,7 +33,7 @@ class AddActivity : AppCompatActivity() {
         spinnerDifficultyAdA = findViewById(R.id.spinnerDifficultyAcA)
         questionTextAdA = findViewById(R.id.questionTextAcA)
         winLoseTextAdA = findViewById(R.id.resultViewAcA)
-        answerTextAdA = findViewById(R.id.answerInputAda)
+        answerInputAdA = findViewById(R.id.answerInputAda)
 
         spinner()
 
@@ -42,12 +42,12 @@ class AddActivity : AppCompatActivity() {
 
         enterButtonAdA.setOnClickListener {
 
-            if (answerTextAdA.text.isNullOrEmpty()) {
+            if (answerInputAdA.text.isNullOrEmpty()) {
                 Toast.makeText(this, "Field cannot be empty", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
             handleAnswer()
-            answerTextAdA.text?.clear()
+            answerInputAdA.text?.clear()
             setDifficulty(currentDifficulty)
         }
 
@@ -60,7 +60,7 @@ class AddActivity : AppCompatActivity() {
         resultViewAdA = findViewById(R.id.resultViewAcA)
 
 
-        val userAnswerText = answerTextAdA.text.toString()
+        val userAnswerText = answerInputAdA.text.toString()
         val userAnswer = userAnswerText.toIntOrNull()
 
         val sharedPref = getSharedPreferences("addition_score", MODE_PRIVATE)

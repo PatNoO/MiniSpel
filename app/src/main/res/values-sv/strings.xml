@@ -13,5 +13,6 @@
     <string name="answer_edit">Svar</string>
     <string name="name_edit">Namn</string>
     <string name="wins_loses">Vinnster : %1$d \nFörluster : %2$d</string>
+    <string name="welcome_text">Välkommen \n Vem spelar idag ? 😎 </string>
 
 </resources>
