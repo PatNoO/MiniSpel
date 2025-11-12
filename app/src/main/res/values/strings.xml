@@ -12,6 +12,7 @@
     <string name="answer_edit">Answer</string>
     <string name="name_edit">Name</string>
     <string name="wins_loses">Wins : %1$d \nLoses : %2$d</string>
+    <string name="welcome_text">Welcome \n Who is playing ? 😎 </string>
 
 
 </resources>

@@ -1,5 +1,6 @@
 package com.example.minispel
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
@@ -13,8 +14,10 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.button.MaterialSplitButton
 
+@SuppressLint("StaticFieldLeak")
 private lateinit var spinnerMa: Spinner
 
+@SuppressLint("StaticFieldLeak")
 private lateinit var winLoseTxtViewMa: TextView
 
 //private var wins: Int = 0
@@ -34,10 +37,13 @@ private lateinit var winLoseTxtViewMa: TextView
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         setContentView(R.layout.activity_main)
+        val intent = Intent(this, StartActivity::class.java)
+        startActivity(intent)
+        onPause()
 
         spinnerMa = findViewById(R.id.spinnerAm)
+
 
 
     }
