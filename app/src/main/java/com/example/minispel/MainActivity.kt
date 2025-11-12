@@ -17,9 +17,19 @@ private lateinit var spinnerMa: Spinner
 
 private lateinit var winLoseTxtViewMa: TextView
 
-private var wins : Int = 0
-private var loses : Int = 0
-
+//private var wins: Int = 0
+//private var loses: Int = 0
+//private var addWins = 0
+//private var addLoses = 0
+//
+//private val subWin = 0
+//private val subLoses = 0
+//
+//private val multiWin = 0
+//private val multiLoses = 0
+//
+//private val divWin = 0
+//private val divLoses = 0
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -30,48 +40,50 @@ class MainActivity : AppCompatActivity() {
         spinnerMa = findViewById(R.id.spinnerAm)
 
 
-
-
     }
 
     //----End of onCreate---//
 
 
-    override fun onResume(){
+    override fun onResume() {
         super.onResume()
         spinner()
 
-        val sharedPrefMa = getSharedPreferences("addition_score", MODE_PRIVATE)
-        wins =sharedPrefMa.getInt("add_wins", 0)
-        loses = sharedPrefMa.getInt("add_loses",0)
+//        val sharedPrefMa = getSharedPreferences("addition_score", MODE_PRIVATE)
+//        wins = sharedPrefMa.getInt("add_wins", 0)
+//        loses = sharedPrefMa.getInt("add_loses", 0)
 
     }
 
-    fun resetSharedPref () {
+    fun resetSharedPref() {
         val sharedPrefMa = getSharedPreferences("math_score", MODE_PRIVATE)
 
-        wins = 0
-        loses = 0
-        sharedPrefMa.edit().apply{
+//        wins = 0
+//        loses = 0
+        sharedPrefMa.edit().apply {
             putInt("wins", 0)
             putInt("loses", 0)
             apply()
         }
 
-        winLoseTxtViewMa.text = getString(R.string.wins_loses, wins, loses)
-
-        Toast.makeText(this,"ScoreBoard is clear",Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, "ScoreBoard is clear", Toast.LENGTH_SHORT).show()
     }
 
     private fun spinner() {
         val categories =
-            arrayOf("Category","Addition (+)", "Subtration (-)", "Multiplikation (*)", "division (/)")
+            arrayOf(
+                "Category",
+                "Addition (+)",
+                "Subtration (-)",
+                "Multiplikation (*)",
+                "division (/)"
+            )
         val spinnerAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, categories)
         spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
 
         spinnerMa.adapter = spinnerAdapter
         spinnerMa.dropDownVerticalOffset = spinnerMa.height
-        
+
         spinnerMa.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(
                 parent: AdapterView<*>?,
@@ -92,9 +104,10 @@ class MainActivity : AppCompatActivity() {
     private fun setNewQuestion(position: Int) {
 
         when (position) {
-            0 ->{
+            0 -> {
 
             }
+
             1 -> {
 //                Toast.makeText(this, "Addition (+)", Toast.LENGTH_SHORT).show()
                 val intent = Intent(this, AddActivity::class.java)
@@ -112,6 +125,7 @@ class MainActivity : AppCompatActivity() {
                 val intent = Intent(this, MultiActivity::class.java)
                 startActivity(intent)
             }
+
             4 -> {
 //                Toast.makeText(this, "Addition (+)", Toast.LENGTH_SHORT).show()
                 val intent = Intent(this, DivActivity::class.java)
@@ -122,6 +136,18 @@ class MainActivity : AppCompatActivity() {
         }
 
     }
+/*
+var addWins = 0
+    var addLoses = 0
 
+    val subWin = 0
+    val subLoses = 0
+
+    val multiWin = 0
+    val multiLoses = 0
+
+    val divWin = 0
+    val divLoses = 0
+ */
 
 }

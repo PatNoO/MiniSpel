@@ -13,15 +13,15 @@ import com.google.android.material.textfield.TextInputEditText
 
 class SubActivity : AppCompatActivity() {
 
-    private lateinit var questionTextSuA : TextView
+    private lateinit var questionTextSuA: TextView
 
-    private lateinit var winLoseTextSuA : TextView
+    private lateinit var winLoseTextSuA: TextView
 
-    private lateinit var spinnerDifficultySuA : Spinner
-    private lateinit var resultViewSuA : TextView
-    private lateinit var answerTextSuA : TextInputEditText
+    private lateinit var spinnerDifficultySuA: Spinner
+    private lateinit var resultViewSuA: TextView
+    private lateinit var answerTextSuA: TextInputEditText
     private var currentDifficulty = 0
-    var firstNumber  = 0
+    var firstNumber = 0
     var secondNumber = 0
     var correctAnswer = 0
 
@@ -42,13 +42,13 @@ class SubActivity : AppCompatActivity() {
 
         enterButtonSuA.setOnClickListener {
 
-            if (answerTextSuA.text.isNullOrEmpty()){
-                Toast.makeText(this,"Field cannot be empty", Toast.LENGTH_SHORT).show()
+            if (answerTextSuA.text.isNullOrEmpty()) {
+                Toast.makeText(this, "Field cannot be empty", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
             handleAnswer()
             answerTextSuA.text?.clear()
-            setDifficulty(currentDifficulty )
+            setDifficulty(currentDifficulty)
         }
 
         backButtonSuA.setOnClickListener {
@@ -109,34 +109,37 @@ class SubActivity : AppCompatActivity() {
         }
     }
 
-    fun setDifficulty (position : Int) {
+    fun setDifficulty(position: Int) {
 
         currentDifficulty = position
 
         when (position) {
             0 -> {
-                Toast.makeText(this, "Your choice ' Easy ' ",Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Your choice ' Easy ' ", Toast.LENGTH_SHORT).show()
                 firstNumber = (1..10).random()
                 secondNumber = (1..10).random()
                 correctAnswer = firstNumber - secondNumber
                 questionTextSuA.text = getString(R.string.sub_question, firstNumber, secondNumber)
             }
+
             1 -> {
-                Toast.makeText(this, "Your choice ' Medium ' ",Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Your choice ' Medium ' ", Toast.LENGTH_SHORT).show()
                 firstNumber = (10..20).random()
                 secondNumber = (10..30).random()
                 correctAnswer = firstNumber - secondNumber
                 questionTextSuA.text = getString(R.string.sub_question, firstNumber, secondNumber)
             }
+
             2 -> {
-                Toast.makeText(this, "Your choice ' Hard ' ",Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Your choice ' Hard ' ", Toast.LENGTH_SHORT).show()
                 firstNumber = (10..30).random()
                 secondNumber = (10..40).random()
                 correctAnswer = firstNumber - secondNumber
                 questionTextSuA.text = getString(R.string.sub_question, firstNumber, secondNumber)
             }
+
             3 -> {
-                Toast.makeText(this, "Your choice ' SuperHard ' ",Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Your choice ' SuperHard ' ", Toast.LENGTH_SHORT).show()
                 firstNumber = (30..100).random()
                 secondNumber = (20..350).random()
                 correctAnswer = firstNumber - secondNumber

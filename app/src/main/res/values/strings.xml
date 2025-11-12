@@ -1,12 +1,12 @@
 <resources>
     <string name="app_name">MiniSpel</string>
-    <string name="greeting">Welcome to this mini math game</string>
+    <string name="greeting">Welcome to this mini math game 📝 </string>
     <string name="generate_nr_button">New</string>
     <string name="user_guess_button">Enter</string>
-    <string name="add_question">%1$d + %2$d .. = ?</string>
-    <string name="sub_question">%1$d - %2$d .. = ?</string>
-    <string name="multip_question">%1$d * %2$d .. = ?</string>
-    <string name="div_question">%1$d / %2$d .. = ?</string>
+    <string name="add_question">%1$d + %2$d ⁇ </string>
+    <string name="sub_question">%1$d - %2$d ⁇</string>
+    <string name="multip_question">%1$d * %2$d ⁇</string>
+    <string name="div_question">%1$d / %2$d ⁇ </string>
     <string name="correct_answer">Wohoo, Correct answer! 🥳</string>
     <string name="wrong_answer">Shit.. Wrong answer ! 💀 </string>
     <string name="answer_edit">Answer</string>

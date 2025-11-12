@@ -14,13 +14,13 @@ import com.google.android.material.textfield.TextInputEditText
 
 class DivActivity : AppCompatActivity() {
 
-    private lateinit var questionTextDiA : TextView
-    private lateinit var winLoseTextDiA : TextView
-    private lateinit var spinnerDifficultyDiA : Spinner
-    private lateinit var resultViewDiA : TextView
-    private lateinit var answerTextDiA : TextInputEditText
+    private lateinit var questionTextDiA: TextView
+    private lateinit var winLoseTextDiA: TextView
+    private lateinit var spinnerDifficultyDiA: Spinner
+    private lateinit var resultViewDiA: TextView
+    private lateinit var answerTextDiA: TextInputEditText
     private var currentDifficulty = 0
-    var firstNumber  = 0
+    var firstNumber = 0
     var secondNumber = 0
     var correctAnswer = 0
 
@@ -40,13 +40,13 @@ class DivActivity : AppCompatActivity() {
 
         enterButtonDiA.setOnClickListener {
 
-            if (answerTextDiA.text.isNullOrEmpty()){
-                Toast.makeText(this,"Field cannot be empty", Toast.LENGTH_SHORT).show()
+            if (answerTextDiA.text.isNullOrEmpty()) {
+                Toast.makeText(this, "Field cannot be empty", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
             handleAnswer()
             answerTextDiA.text?.clear()
-            setDifficulty(currentDifficulty )
+            setDifficulty(currentDifficulty)
         }
 
         backButtonDiA.setOnClickListener {
@@ -107,34 +107,37 @@ class DivActivity : AppCompatActivity() {
         }
     }
 
-    fun setDifficulty (position : Int) {
+    fun setDifficulty(position: Int) {
 
         currentDifficulty = position
 
         when (position) {
             0 -> {
-                Toast.makeText(this, "Your choice ' Easy ' ",Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Your choice ' Easy ' ", Toast.LENGTH_SHORT).show()
                 firstNumber = (1..10).random()
                 secondNumber = (1..10).random()
                 correctAnswer = firstNumber / secondNumber
                 questionTextDiA.text = getString(R.string.div_question, firstNumber, secondNumber)
             }
+
             1 -> {
-                Toast.makeText(this, "Your choice ' Medium ' ",Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Your choice ' Medium ' ", Toast.LENGTH_SHORT).show()
                 firstNumber = (10..20).random()
                 secondNumber = (10..30).random()
                 correctAnswer = firstNumber / secondNumber
                 questionTextDiA.text = getString(R.string.div_question, firstNumber, secondNumber)
             }
+
             2 -> {
-                Toast.makeText(this, "Your choice ' Hard ' ",Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Your choice ' Hard ' ", Toast.LENGTH_SHORT).show()
                 firstNumber = (10..30).random()
                 secondNumber = (10..40).random()
                 correctAnswer = firstNumber / secondNumber
                 questionTextDiA.text = getString(R.string.div_question, firstNumber, secondNumber)
             }
+
             3 -> {
-                Toast.makeText(this, "Your choice ' SuperHard ' ",Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Your choice ' SuperHard ' ", Toast.LENGTH_SHORT).show()
                 firstNumber = (30..100).random()
                 secondNumber = (20..350).random()
                 correctAnswer = firstNumber / secondNumber
