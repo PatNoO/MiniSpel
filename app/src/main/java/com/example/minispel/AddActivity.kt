@@ -1,12 +1,10 @@
 package com.example.minispel
 
-import android.content.Context
 import android.os.Bundle
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Button
-import android.widget.EditText
 import android.widget.Spinner
 import android.widget.TextView
 import android.widget.Toast
@@ -14,7 +12,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.textfield.TextInputEditText
 
 
-class AdditionActivity : AppCompatActivity() {
+class AddActivity : AppCompatActivity() {
 
     private lateinit var questionTextAdA : TextView
 
@@ -30,7 +28,7 @@ class AdditionActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_addition)
+        setContentView(R.layout.activity_add)
 
         spinnerDifficultyAdA = findViewById(R.id.spinnerDifficultyAcA)
         questionTextAdA = findViewById(R.id.questionTextAcA)
@@ -121,28 +119,28 @@ class AdditionActivity : AppCompatActivity() {
                 firstNumber = (1..10).random()
                 secondNumber = (1..10).random()
                 correctAnswer = firstNumber + secondNumber
-                questionTextAdA.text = getString(R.string.addition_question, firstNumber, secondNumber)
+                questionTextAdA.text = getString(R.string.add_question, firstNumber, secondNumber)
             }
             1 -> {
                 Toast.makeText(this, "Your choice ' Medium ' ",Toast.LENGTH_SHORT).show()
                 firstNumber = (10..20).random()
                 secondNumber = (10..30).random()
                 correctAnswer = firstNumber + secondNumber
-                questionTextAdA.text = getString(R.string.addition_question, firstNumber, secondNumber)
+                questionTextAdA.text = getString(R.string.add_question, firstNumber, secondNumber)
             }
             2 -> {
                 Toast.makeText(this, "Your choice ' Hard ' ",Toast.LENGTH_SHORT).show()
                 firstNumber = (10..30).random()
                 secondNumber = (10..40).random()
                 correctAnswer = firstNumber + secondNumber
-                questionTextAdA.text = getString(R.string.addition_question, firstNumber, secondNumber)
+                questionTextAdA.text = getString(R.string.add_question, firstNumber, secondNumber)
             }
             3 -> {
                 Toast.makeText(this, "Your choice ' SuperHard ' ",Toast.LENGTH_SHORT).show()
                 firstNumber = (30..100).random()
                 secondNumber = (20..350).random()
                 correctAnswer = firstNumber + secondNumber
-                questionTextAdA.text = getString(R.string.addition_question, firstNumber, secondNumber)
+                questionTextAdA.text = getString(R.string.add_question, firstNumber, secondNumber)
             }
         }
     }

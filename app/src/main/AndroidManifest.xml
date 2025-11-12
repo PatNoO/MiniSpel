@@ -12,7 +12,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MiniSpel">
         <activity
-            android:name=".AdditionActivity"
+            android:name=".DivActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MultiActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SubActivity"
+            android:exported="false" />
+        <activity
+            android:name=".AddActivity"
             android:exported="false" />
         <activity
             android:name=".AnswerActivity"
