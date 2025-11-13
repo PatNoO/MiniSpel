@@ -2,6 +2,7 @@ package com.example.minispel
 
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.view.View
 import android.widget.AdapterView
@@ -11,16 +12,30 @@ import android.widget.EditText
 import android.widget.Spinner
 import android.widget.TextView
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 
 class MainActivity : AppCompatActivity() {
-
+    private var player: Player? = Player ("Default",0,0)
     private lateinit var spinnerMa: Spinner
 
 
-    private lateinit var winLoseTxtViewMa: TextView
+    private lateinit var headTextMa: TextView
 
-    private var player = Player ("Default",0,0)
+    private val startLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
+            result ->
+        if (result.resultCode == RESULT_OK) {
+
+            val playerUpdated = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                result.data?.getSerializableExtra("player_updated", Player::class.java)
+            }else {
+                result.data?.getSerializableExtra("player_updated") as Player
+            }
+
+            player = playerUpdated
+            showGreeting()
+        }
+    }
 
 //    private var
 
@@ -30,15 +45,20 @@ class MainActivity : AppCompatActivity() {
 
         val intent = Intent(this, StartActivity::class.java)
         intent.putExtra("player", player)
-        startActivity(intent)
+        startLauncher.launch(intent)
         onPause()
 
         spinnerMa = findViewById(R.id.spinnerAm)
+        headTextMa = findViewById(R.id.headTextAm)
 
+        showGreeting()
     }
 
     //----End of onCreate---//
 
+    fun showGreeting () {
+        headTextMa.text = getString(R.string.greeting, player?.name)
+    }
 
     override fun onResume() {
         super.onResume()
