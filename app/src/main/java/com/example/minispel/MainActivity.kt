@@ -18,22 +18,20 @@ import androidx.appcompat.app.AppCompatActivity
 class MainActivity : AppCompatActivity() {
     private var player: Player? = Player ("Default",0,0)
     private lateinit var spinnerMa: Spinner
-
-
+    private lateinit var winLoseInfoTextMa : TextView
     private lateinit var headTextMa: TextView
 
     private val startLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
             result ->
         if (result.resultCode == RESULT_OK) {
-
             val playerUpdated = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
                 result.data?.getSerializableExtra("player_updated", Player::class.java)
             }else {
                 result.data?.getSerializableExtra("player_updated") as Player
             }
-
             player = playerUpdated
             showGreeting()
+            showWinLose()
         }
     }
 
@@ -48,11 +46,17 @@ class MainActivity : AppCompatActivity() {
 
         spinnerMa = findViewById(R.id.spinnerAm)
         headTextMa = findViewById(R.id.headTextAm)
+        winLoseInfoTextMa = findViewById(R.id.win_lose_info_text_am)
+
 
         showGreeting()
     }
 
     //----End of onCreate---//
+
+    fun showWinLose () {
+        winLoseInfoTextMa.text = getString(R.string.total_wins_loses, player?.wins, player?.loses)
+    }
 
     fun showGreeting () {
         headTextMa.text = getString(R.string.greeting, player?.name)
@@ -68,19 +72,19 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    fun resetSharedPref() {
-        val sharedPrefMa = getSharedPreferences("math_score", MODE_PRIVATE)
-
-//        wins = 0
-//        loses = 0
-        sharedPrefMa.edit().apply {
-            putInt("wins", 0)
-            putInt("loses", 0)
-            apply()
-        }
-
-        Toast.makeText(this, "ScoreBoard is clear", Toast.LENGTH_SHORT).show()
-    }
+//    fun resetSharedPref() {
+//        val sharedPrefMa = getSharedPreferences("math_score", MODE_PRIVATE)
+//
+////        wins = 0
+////        loses = 0
+//        sharedPrefMa.edit().apply {
+//            putInt("wins", 0)
+//            putInt("loses", 0)
+//            apply()
+//        }
+//
+//        Toast.makeText(this, "ScoreBoard is clear", Toast.LENGTH_SHORT).show()
+//    }
 
     private fun spinner() {
         val categories =
@@ -118,17 +122,35 @@ class MainActivity : AppCompatActivity() {
     private fun setNewQuestion(position: Int) {
 
         when (position) {
-            0 -> { }
-            1 -> { val intent = Intent(this, AddActivity::class.java)
-                startActivity(intent) }
-            2 -> { val intent = Intent(this, SubActivity::class.java)
-                startActivity(intent) }
-            3 -> { val intent = Intent(this, MultiActivity::class.java)
-                startActivity(intent) }
-            4 -> { val intent = Intent(this, DivActivity::class.java)
-                startActivity(intent) }
-            5 -> { val intent = Intent(this, ScoreboardActivity::class.java)
-                startActivity(intent)
+            0 -> {}
+            1 -> {
+                val intent = Intent(this, AddActivity::class.java)
+                intent.putExtra("player", player)
+                startLauncher.launch(intent)
+            }
+
+            2 -> {
+                val intent = Intent(this, SubActivity::class.java)
+                intent.putExtra("player", player)
+                startLauncher.launch(intent)
+            }
+
+            3 -> {
+                val intent = Intent(this, MultiActivity::class.java)
+                intent.putExtra("player", player)
+                startLauncher.launch(intent)
+            }
+
+            4 -> {
+                val intent = Intent(this, DivActivity::class.java)
+                intent.putExtra("player", player)
+                startLauncher.launch(intent)
+            }
+
+            5 -> {
+                val intent = Intent(this, ScoreboardActivity::class.java)
+                intent.putExtra("player", player)
+                startLauncher.launch(intent)
             }
         }
 

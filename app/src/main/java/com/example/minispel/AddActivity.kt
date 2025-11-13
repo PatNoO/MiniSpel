@@ -1,5 +1,7 @@
 package com.example.minispel
 
+import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.view.View
 import android.widget.AdapterView
@@ -8,16 +10,16 @@ import android.widget.Button
 import android.widget.Spinner
 import android.widget.TextView
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.textfield.TextInputEditText
 
 
 class AddActivity : AppCompatActivity() {
 
+    private lateinit var player : Player
     private lateinit var questionTextAdA: TextView
-
     private lateinit var winLoseTextAdA: TextView
-
     private lateinit var spinnerDifficultyAdA: Spinner
     private lateinit var resultViewAdA: TextView
     private lateinit var answerInputAdA: TextInputEditText
@@ -52,6 +54,17 @@ class AddActivity : AppCompatActivity() {
         }
 
         backButtonAdA.setOnClickListener {
+
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                player = intent.getSerializableExtra("player", Player::class.java)!!
+            }else {
+                player = intent.getSerializableExtra("player") as Player
+            }
+
+            val intentResult = Intent().apply {
+                putExtra("player_updated", player)
+            }
+            setResult(RESULT_OK, intentResult)
             finish()
         }
     }
@@ -68,20 +81,26 @@ class AddActivity : AppCompatActivity() {
         var wins = sharedPref.getInt("add_wins", 0)
         var loses = sharedPref.getInt("add_loses", 0)
 
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            player = intent.getSerializableExtra("player", Player::class.java)!!
+        }else {
+            player = intent.getSerializableExtra("player") as Player
+        }
+
         if (userAnswer == correctAnswer) {
             wins++
+            player.wins = wins
             winLoseTextAdA.text = getString(R.string.correct_answer)
         } else {
             loses++
+            player.loses = loses
             winLoseTextAdA.text = getString(R.string.wrong_answer)
         }
-
         sharedPref.edit().apply {
             putInt("add_wins", wins)
             putInt("add_loses", loses)
             apply()
         }
-
 
     }
 

@@ -1,5 +1,7 @@
 package com.example.minispel
 
+import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
@@ -7,7 +9,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 
 class ScoreboardActivity : AppCompatActivity() {
-
+    private lateinit var player : Player
     private lateinit var addScoreTextSbA : TextView
     private lateinit var subScoreTextSbA : TextView
     private lateinit var multiScoreTextSbA : TextView
@@ -44,6 +46,7 @@ class ScoreboardActivity : AppCompatActivity() {
             resetSubScorePref()
             resetMultiScorePref()
             resetDivScorePref()
+            resetPlayerScore()
 
             Toast.makeText(this, "ScoreBoard is clear", Toast.LENGTH_SHORT).show()
 
@@ -53,6 +56,23 @@ class ScoreboardActivity : AppCompatActivity() {
             finish()
         }
 
+    }
+    
+    fun resetPlayerScore() {
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            player = intent.getSerializableExtra("player", Player::class.java)!!
+        }else {
+            player = intent.getSerializableExtra("player") as Player
+        }
+
+        player.wins = 0
+        player.loses = 0
+
+        val intentResult = Intent().apply {
+            putExtra("player_updated", player)
+        }
+        setResult(RESULT_OK, intentResult)
     }
     fun resetAddScorePref() {
         val sharedPref = getSharedPreferences("addition_score", MODE_PRIVATE)

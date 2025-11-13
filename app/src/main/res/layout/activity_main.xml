@@ -15,6 +15,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/mathbacround" />
 
     <TextView
@@ -25,7 +26,7 @@
         android:layout_marginTop="162dp"
         android:text="@string/greeting"
         android:textColor="@color/white"
-        android:textSize="22dp"
+        android:textSize="22sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -44,6 +45,29 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/headTextAm" />
+
+    <ImageView
+        android:id="@+id/post_it_image"
+        android:layout_width="302dp"
+        android:layout_height="288dp"
+        android:src="@drawable/mathpostitnotescore"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinnerAm" />
+
+    <TextView
+        android:id="@+id/win_lose_info_text_am"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Win \nLose"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="22sp"
+        app:layout_constraintBottom_toBottomOf="@+id/post_it_image"
+        app:layout_constraintEnd_toEndOf="@+id/post_it_image"
+        app:layout_constraintStart_toStartOf="@+id/post_it_image"
+        app:layout_constraintTop_toBottomOf="@+id/spinnerAm" />
 
 
     <!--    <EditText-->
