@@ -37,8 +37,6 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-//    private var
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -119,35 +117,15 @@ class MainActivity : AppCompatActivity() {
     private fun setNewQuestion(position: Int) {
 
         when (position) {
-            0 -> {
-
-            }
-
-            1 -> {
-//                Toast.makeText(this, "Addition (+)", Toast.LENGTH_SHORT).show()
-                val intent = Intent(this, AddActivity::class.java)
-                startActivity(intent)
-            }
-
-            2 -> {
-//                Toast.makeText(this, "Addition (+)", Toast.LENGTH_SHORT).show()
-                val intent = Intent(this, SubActivity::class.java)
-                startActivity(intent)
-            }
-
-            3 -> {
-//                Toast.makeText(this, "Addition (+)", Toast.LENGTH_SHORT).show()
-                val intent = Intent(this, MultiActivity::class.java)
-                startActivity(intent)
-            }
-
-            4 -> {
-//                Toast.makeText(this, "Addition (+)", Toast.LENGTH_SHORT).show()
-                val intent = Intent(this, DivActivity::class.java)
-                startActivity(intent)
-//
-            }
-
+            0 -> { }
+            1 -> { val intent = Intent(this, AddActivity::class.java)
+                startActivity(intent) }
+            2 -> { val intent = Intent(this, SubActivity::class.java)
+                startActivity(intent) }
+            3 -> { val intent = Intent(this, MultiActivity::class.java)
+                startActivity(intent) }
+            4 -> { val intent = Intent(this, DivActivity::class.java)
+                startActivity(intent) }
         }
 
     }

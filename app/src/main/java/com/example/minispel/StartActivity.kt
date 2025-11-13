@@ -28,8 +28,6 @@ class StartActivity : AppCompatActivity() {
             player = intent.getSerializableExtra("player") as Player
         }
 
-        inputNameSa.setText(player.name)
-
 
         loginButtonSa.setOnClickListener {
 
