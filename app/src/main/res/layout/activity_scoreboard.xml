@@ -23,42 +23,46 @@
         android:id="@+id/add_score_text_asb"
         android:layout_width="152dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="198dp"
+        android:layout_marginTop="188dp"
         android:background="@color/white"
         android:gravity="center"
         android:text="Scores"
         android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/sub_score_text_asb"
         android:layout_width="152dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="52dp"
         android:background="@color/white"
         android:text="Scores"
         android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/add_score_text_asb" />
+
     <TextView
 
         android:id="@+id/multi_score_text_asb"
         android:layout_width="152dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="52dp"
         android:background="@color/white"
         android:text="Scores"
         android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/sub_score_text_asb" />
+
     <TextView
 
         android:id="@+id/div_score_text_asb"
         android:layout_width="152dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="52dp"
         android:background="@color/white"
         android:text="Scores"
         android:textAlignment="center"
@@ -66,6 +70,26 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/multi_score_text_asb" />
 
+    <Button
+        android:id="@+id/reset_score_button_asb"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="52dp"
+        android:text="Reset ScoreBoard"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/div_score_text_asb" />
+
+    <Button
+        android:id="@+id/back_score_button_asb"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="52dp"
+        android:text="Back"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/reset_score_button_asb" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
