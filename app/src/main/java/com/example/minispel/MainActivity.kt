@@ -2,6 +2,7 @@ package com.example.minispel
 
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.view.View
 import android.widget.AdapterView
@@ -11,18 +12,30 @@ import android.widget.EditText
 import android.widget.Spinner
 import android.widget.TextView
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 
 class MainActivity : AppCompatActivity() {
-
+    private var player: Player? = Player ("Default",0,0)
     private lateinit var spinnerMa: Spinner
 
 
-    private lateinit var winLoseTxtViewMa: TextView
+    private lateinit var headTextMa: TextView
 
-    private var player = Player ("Default",0,0)
+    private val startLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
+            result ->
+        if (result.resultCode == RESULT_OK) {
 
-//    private var
+            val playerUpdated = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                result.data?.getSerializableExtra("player_updated", Player::class.java)
+            }else {
+                result.data?.getSerializableExtra("player_updated") as Player
+            }
+
+            player = playerUpdated
+            showGreeting()
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,15 +43,20 @@ class MainActivity : AppCompatActivity() {
 
         val intent = Intent(this, StartActivity::class.java)
         intent.putExtra("player", player)
-        startActivity(intent)
+        startLauncher.launch(intent)
         onPause()
 
         spinnerMa = findViewById(R.id.spinnerAm)
+        headTextMa = findViewById(R.id.headTextAm)
 
+        showGreeting()
     }
 
     //----End of onCreate---//
 
+    fun showGreeting () {
+        headTextMa.text = getString(R.string.greeting, player?.name)
+    }
 
     override fun onResume() {
         super.onResume()
@@ -99,35 +117,15 @@ class MainActivity : AppCompatActivity() {
     private fun setNewQuestion(position: Int) {
 
         when (position) {
-            0 -> {
-
-            }
-
-            1 -> {
-//                Toast.makeText(this, "Addition (+)", Toast.LENGTH_SHORT).show()
-                val intent = Intent(this, AddActivity::class.java)
-                startActivity(intent)
-            }
-
-            2 -> {
-//                Toast.makeText(this, "Addition (+)", Toast.LENGTH_SHORT).show()
-                val intent = Intent(this, SubActivity::class.java)
-                startActivity(intent)
-            }
-
-            3 -> {
-//                Toast.makeText(this, "Addition (+)", Toast.LENGTH_SHORT).show()
-                val intent = Intent(this, MultiActivity::class.java)
-                startActivity(intent)
-            }
-
-            4 -> {
-//                Toast.makeText(this, "Addition (+)", Toast.LENGTH_SHORT).show()
-                val intent = Intent(this, DivActivity::class.java)
-                startActivity(intent)
-//
-            }
-
+            0 -> { }
+            1 -> { val intent = Intent(this, AddActivity::class.java)
+                startActivity(intent) }
+            2 -> { val intent = Intent(this, SubActivity::class.java)
+                startActivity(intent) }
+            3 -> { val intent = Intent(this, MultiActivity::class.java)
+                startActivity(intent) }
+            4 -> { val intent = Intent(this, DivActivity::class.java)
+                startActivity(intent) }
         }
 
     }
