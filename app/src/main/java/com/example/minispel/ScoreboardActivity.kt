@@ -40,8 +40,13 @@ class ScoreboardActivity : AppCompatActivity() {
         getDivScores()
 
         resetScoreButtonSbA.setOnClickListener {
+            resetAddScorePref()
+            resetSubScorePref()
+            resetMultiScorePref()
+            resetDivScorePref()
 
-            resetScoreboardPref()
+            Toast.makeText(this, "ScoreBoard is clear", Toast.LENGTH_SHORT).show()
+
         }
 
         backScoreButtonSbA.setOnClickListener {
@@ -49,19 +54,53 @@ class ScoreboardActivity : AppCompatActivity() {
         }
 
     }
-    fun resetScoreboardPref() {
-        val sharedPrefMa = getSharedPreferences("addition_score", MODE_PRIVATE)
+    fun resetAddScorePref() {
+        val sharedPref = getSharedPreferences("addition_score", MODE_PRIVATE)
 
-        addWins = 0
-        addLoses = 0
-        sharedPrefMa.edit().apply {
+
+//        addWins = 0
+//        addLoses = 0
+        sharedPref.edit().apply {
             putInt("add_wins", 0)
             putInt("add_loses", 0)
             apply()
         }
-
-        Toast.makeText(this, "ScoreBoard is clear", Toast.LENGTH_SHORT).show()
     }
+
+    fun resetSubScorePref() {
+        val sharedPref = getSharedPreferences("subtraction_score", MODE_PRIVATE)
+
+//        subWins = 0
+//        subLoses = 0
+        sharedPref.edit().apply {
+            putInt("sub_wins", 0)
+            putInt("sub_loses", 0)
+            apply()
+        }
+    }
+    fun resetMultiScorePref() {
+        val sharedPref = getSharedPreferences("multiplication_score", MODE_PRIVATE)
+
+//        multiWins = 0
+//        multiLoses = 0
+        sharedPref.edit().apply {
+            putInt("multi_wins", 0)
+            putInt("multi_loses", 0)
+            apply()
+        }
+    }
+    fun resetDivScorePref() {
+        val sharedPref = getSharedPreferences("division_score", MODE_PRIVATE)
+
+//        divWins = 0
+//        divLoses = 0
+        sharedPref.edit().apply {
+            putInt("div_wins", 0)
+            putInt("div_loses", 0)
+            apply()
+        }
+    }
+
     fun getAddScores (){
         val sharedPref = getSharedPreferences("addition_score", MODE_PRIVATE)
         addWins = sharedPref.getInt("add_wins", 0)
@@ -88,7 +127,7 @@ class ScoreboardActivity : AppCompatActivity() {
     fun getDivScores () {
         val sharedPref = getSharedPreferences("division_score", MODE_PRIVATE)
         divWins = sharedPref.getInt("div_wins",0)
-        divLoses = sharedPref.getInt("div_wins",0)
+        divLoses = sharedPref.getInt("div_loses",0)
 
         divScoreTextSbA.text = "Division (/) \n Wins : $divWins \n Loses : $divLoses"
 
