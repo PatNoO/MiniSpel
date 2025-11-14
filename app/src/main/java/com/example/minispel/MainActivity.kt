@@ -65,26 +65,8 @@ class MainActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
         spinner()
-
-//        val sharedPrefMa = getSharedPreferences("addition_score", MODE_PRIVATE)
-//        wins = sharedPrefMa.getInt("add_wins", 0)
-//        loses = sharedPrefMa.getInt("add_loses", 0)
-
     }
 
-//    fun resetSharedPref() {
-//        val sharedPrefMa = getSharedPreferences("math_score", MODE_PRIVATE)
-//
-////        wins = 0
-////        loses = 0
-//        sharedPrefMa.edit().apply {
-//            putInt("wins", 0)
-//            putInt("loses", 0)
-//            apply()
-//        }
-//
-//        Toast.makeText(this, "ScoreBoard is clear", Toast.LENGTH_SHORT).show()
-//    }
 
     private fun spinner() {
         val categories =
@@ -100,7 +82,6 @@ class MainActivity : AppCompatActivity() {
         spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
 
         spinnerMa.adapter = spinnerAdapter
-        spinnerMa.dropDownVerticalOffset = spinnerMa.height
 
         spinnerMa.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(
@@ -155,18 +136,5 @@ class MainActivity : AppCompatActivity() {
         }
 
     }
-/*
-var addWins = 0
-    var addLoses = 0
-
-    val subWin = 0
-    val subLoses = 0
-
-    val multiWin = 0
-    val multiLoses = 0
-
-    val divWin = 0
-    val divLoses = 0
- */
 
 }

@@ -54,17 +54,6 @@ class AddActivity : AppCompatActivity() {
         }
 
         backButtonAdA.setOnClickListener {
-
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-                player = intent.getSerializableExtra("player", Player::class.java)!!
-            }else {
-                player = intent.getSerializableExtra("player") as Player
-            }
-
-            val intentResult = Intent().apply {
-                putExtra("player_updated", player)
-            }
-            setResult(RESULT_OK, intentResult)
             finish()
         }
     }
@@ -83,9 +72,14 @@ class AddActivity : AppCompatActivity() {
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             player = intent.getSerializableExtra("player", Player::class.java)!!
-        }else {
+        } else {
             player = intent.getSerializableExtra("player") as Player
         }
+
+        val intentResult = Intent().apply {
+            putExtra("player_updated", player)
+        }
+        setResult(RESULT_OK, intentResult)
 
         if (userAnswer == correctAnswer) {
             wins++

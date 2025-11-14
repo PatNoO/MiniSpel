@@ -1,5 +1,7 @@
 package com.example.minispel
 
+import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.view.View
 import android.widget.AdapterView
@@ -14,6 +16,7 @@ import com.google.android.material.textfield.TextInputEditText
 
 class DivActivity : AppCompatActivity() {
 
+    private lateinit var player : Player
     private lateinit var questionTextDiA: TextView
     private lateinit var winLoseTextDiA: TextView
     private lateinit var spinnerDifficultyDiA: Spinner
@@ -54,6 +57,8 @@ class DivActivity : AppCompatActivity() {
         }
     }
 
+    //----End of onCreate---//
+
     private fun handleAnswer() {
         resultViewDiA = findViewById(R.id.resultViewAcA)
 
@@ -65,6 +70,17 @@ class DivActivity : AppCompatActivity() {
 
         var wins = sharedPref.getInt("div_wins", 0)
         var loses = sharedPref.getInt("div_loses", 0)
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            player = intent.getSerializableExtra("player", Player::class.java)!!
+        } else {
+            player = intent.getSerializableExtra("player") as Player
+        }
+
+        val intentResult = Intent().apply {
+            putExtra("player_updated", player)
+        }
+        setResult(RESULT_OK, intentResult)
 
         if (userAnswer == correctAnswer) {
             wins++
