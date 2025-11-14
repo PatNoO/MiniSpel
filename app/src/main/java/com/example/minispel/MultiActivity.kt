@@ -1,5 +1,7 @@
 package com.example.minispel
 
+import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.view.View
 import android.widget.AdapterView
@@ -15,6 +17,8 @@ import androidx.core.view.WindowInsetsCompat
 import com.google.android.material.textfield.TextInputEditText
 
 class MultiActivity : AppCompatActivity() {
+
+    private lateinit var player: Player
     private lateinit var questionTextMuA: TextView
 
     private lateinit var winLoseTextMuA: TextView
@@ -57,6 +61,8 @@ class MultiActivity : AppCompatActivity() {
         }
     }
 
+    //----End of onCreate---//
+
     private fun handleAnswer() {
         resultViewMuA = findViewById(R.id.resultViewAcA)
 
@@ -69,11 +75,24 @@ class MultiActivity : AppCompatActivity() {
         var wins = sharedPref.getInt("multi_wins", 0)
         var loses = sharedPref.getInt("multi_loses", 0)
 
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            player = intent.getSerializableExtra("player", Player::class.java)!!
+        } else {
+            player = intent.getSerializableExtra("player") as Player
+        }
+
+        val intentResult = Intent().apply {
+            putExtra("player_updated", player)
+        }
+        setResult(RESULT_OK, intentResult)
+
         if (userAnswer == correctAnswer) {
             wins++
+            player.wins++
             winLoseTextMuA.text = getString(R.string.correct_answer)
         } else {
             loses++
+            player.loses++
             winLoseTextMuA.text = getString(R.string.wrong_answer)
         }
 
@@ -116,7 +135,6 @@ class MultiActivity : AppCompatActivity() {
 
         when (position) {
             0 -> {
-                Toast.makeText(this, "Your choice ' Easy ' ", Toast.LENGTH_SHORT).show()
                 firstNumber = (1..10).random()
                 secondNumber = (1..10).random()
                 correctAnswer = firstNumber * secondNumber
@@ -125,7 +143,6 @@ class MultiActivity : AppCompatActivity() {
             }
 
             1 -> {
-                Toast.makeText(this, "Your choice ' Medium ' ", Toast.LENGTH_SHORT).show()
                 firstNumber = (10..20).random()
                 secondNumber = (10..30).random()
                 correctAnswer = firstNumber * secondNumber
@@ -134,7 +151,6 @@ class MultiActivity : AppCompatActivity() {
             }
 
             2 -> {
-                Toast.makeText(this, "Your choice ' Hard ' ", Toast.LENGTH_SHORT).show()
                 firstNumber = (10..30).random()
                 secondNumber = (10..40).random()
                 correctAnswer = firstNumber * secondNumber
@@ -143,7 +159,6 @@ class MultiActivity : AppCompatActivity() {
             }
 
             3 -> {
-                Toast.makeText(this, "Your choice ' SuperHard ' ", Toast.LENGTH_SHORT).show()
                 firstNumber = (30..100).random()
                 secondNumber = (20..350).random()
                 correctAnswer = firstNumber * secondNumber

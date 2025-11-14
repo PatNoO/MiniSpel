@@ -42,6 +42,7 @@ class AddActivity : AppCompatActivity() {
         val enterButtonAdA = findViewById<Button>(R.id.enterButtonAcA)
         val backButtonAdA = findViewById<Button>(R.id.backButtonAcA)
 
+        // Handles the user's answer when pressing Enter
         enterButtonAdA.setOnClickListener {
 
             if (answerInputAdA.text.isNullOrEmpty()) {
@@ -53,22 +54,15 @@ class AddActivity : AppCompatActivity() {
             setDifficulty(currentDifficulty)
         }
 
+        // Go back to MainActivity
         backButtonAdA.setOnClickListener {
-
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-                player = intent.getSerializableExtra("player", Player::class.java)!!
-            }else {
-                player = intent.getSerializableExtra("player") as Player
-            }
-
-            val intentResult = Intent().apply {
-                putExtra("player_updated", player)
-            }
-            setResult(RESULT_OK, intentResult)
             finish()
         }
     }
-
+    /**
+     * Checks the user's answer, updates Player and SharedPreferences,
+     * and displays the result.
+     */
     private fun handleAnswer() {
         resultViewAdA = findViewById(R.id.resultViewAcA)
 
@@ -83,17 +77,22 @@ class AddActivity : AppCompatActivity() {
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             player = intent.getSerializableExtra("player", Player::class.java)!!
-        }else {
+        } else {
             player = intent.getSerializableExtra("player") as Player
         }
 
+        val intentResult = Intent().apply {
+            putExtra("player_updated", player)
+        }
+        setResult(RESULT_OK, intentResult)
+
         if (userAnswer == correctAnswer) {
             wins++
-            player.wins = wins
+            player.wins ++
             winLoseTextAdA.text = getString(R.string.correct_answer)
         } else {
             loses++
-            player.loses = loses
+            player.loses ++
             winLoseTextAdA.text = getString(R.string.wrong_answer)
         }
         sharedPref.edit().apply {
@@ -103,7 +102,10 @@ class AddActivity : AppCompatActivity() {
         }
 
     }
-
+    /**
+     * Sets up the difficulty spinner with levels:
+     * Easy, Medium, Hard, SuperHard.
+     */
     private fun spinner() {
         val categories =
             arrayOf("Easy", "Medium", "Hard", "SuperHard")
@@ -127,14 +129,18 @@ class AddActivity : AppCompatActivity() {
             }
         }
     }
-
+    /**
+     * Generates a new addition question based on difficulty.
+     *
+     * @param position The difficulty index:
+     * 0 = Easy, 1 = Medium, 2 = Hard, 3 = SuperHard.
+     */
     fun setDifficulty(position: Int) {
 
         currentDifficulty = position
 
         when (position) {
             0 -> {
-                Toast.makeText(this, "Your choice ' Easy ' ", Toast.LENGTH_SHORT).show()
                 firstNumber = (1..10).random()
                 secondNumber = (1..10).random()
                 correctAnswer = firstNumber + secondNumber
@@ -142,7 +148,6 @@ class AddActivity : AppCompatActivity() {
             }
 
             1 -> {
-                Toast.makeText(this, "Your choice ' Medium ' ", Toast.LENGTH_SHORT).show()
                 firstNumber = (10..20).random()
                 secondNumber = (10..30).random()
                 correctAnswer = firstNumber + secondNumber
@@ -150,7 +155,6 @@ class AddActivity : AppCompatActivity() {
             }
 
             2 -> {
-                Toast.makeText(this, "Your choice ' Hard ' ", Toast.LENGTH_SHORT).show()
                 firstNumber = (10..30).random()
                 secondNumber = (10..40).random()
                 correctAnswer = firstNumber + secondNumber
@@ -158,7 +162,6 @@ class AddActivity : AppCompatActivity() {
             }
 
             3 -> {
-                Toast.makeText(this, "Your choice ' SuperHard ' ", Toast.LENGTH_SHORT).show()
                 firstNumber = (30..100).random()
                 secondNumber = (20..350).random()
                 correctAnswer = firstNumber + secondNumber
