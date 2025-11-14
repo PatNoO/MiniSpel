@@ -102,8 +102,8 @@ class MainActivity : AppCompatActivity() {
             arrayOf(
                 "Category",
                 "Addition (+)",
-                "Subtration (-)",
-                "Multiplikation (*)",
+                "Subtraction (-)",
+                "Multiplication (*)",
                 "division (/)",
                 "ScoreBoard"
             )
