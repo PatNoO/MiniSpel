@@ -88,9 +88,11 @@ class MultiActivity : AppCompatActivity() {
 
         if (userAnswer == correctAnswer) {
             wins++
+            player.wins ++
             winLoseTextMuA.text = getString(R.string.correct_answer)
         } else {
             loses++
+            player.loses ++
             winLoseTextMuA.text = getString(R.string.wrong_answer)
         }
 

@@ -84,9 +84,11 @@ class DivActivity : AppCompatActivity() {
 
         if (userAnswer == correctAnswer) {
             wins++
+            player.wins ++
             winLoseTextDiA.text = getString(R.string.correct_answer)
         } else {
             loses++
+            player.loses ++
             winLoseTextDiA.text = getString(R.string.wrong_answer)
         }
 

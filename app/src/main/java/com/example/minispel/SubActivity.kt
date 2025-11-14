@@ -85,11 +85,11 @@ class SubActivity : AppCompatActivity() {
 
         if (userAnswer == correctAnswer) {
             wins++
-            player.wins = wins
+            player.wins ++
             winLoseTextSuA.text = getString(R.string.correct_answer)
         } else {
             loses++
-            player.loses = loses
+            player.loses ++
             winLoseTextSuA.text = getString(R.string.wrong_answer)
         }
 

@@ -48,7 +48,6 @@ class MainActivity : AppCompatActivity() {
         headTextMa = findViewById(R.id.headTextAm)
         winLoseInfoTextMa = findViewById(R.id.win_lose_info_text_am)
 
-
         showGreeting()
     }
 
