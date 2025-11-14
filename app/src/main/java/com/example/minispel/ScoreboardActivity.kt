@@ -3,11 +3,13 @@ package com.example.minispel
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 
 import androidx.appcompat.app.AppCompatActivity
+
 /**
  * ScoreboardActivity displays the player's results for each math category
  * and allows the user to reset saved scores. It also resets the player's
@@ -20,11 +22,11 @@ import androidx.appcompat.app.AppCompatActivity
  * @property divScoreTextSbA TextView showing division wins and losses.
  */
 class ScoreboardActivity : AppCompatActivity() {
-    private lateinit var player : Player
-    private lateinit var addScoreTextSbA : TextView
-    private lateinit var subScoreTextSbA : TextView
-    private lateinit var multiScoreTextSbA : TextView
-    private lateinit var divScoreTextSbA : TextView
+    private lateinit var player: Player
+    private lateinit var addScoreTextSbA: TextView
+    private lateinit var subScoreTextSbA: TextView
+    private lateinit var multiScoreTextSbA: TextView
+    private lateinit var divScoreTextSbA: TextView
 
     private var addWins = 0
     private var addLoses = 0
@@ -69,6 +71,7 @@ class ScoreboardActivity : AppCompatActivity() {
         }
 
     }
+
     /**
      * Resets the player's total wins and losses and sends the updated player object back.
      *
@@ -78,7 +81,7 @@ class ScoreboardActivity : AppCompatActivity() {
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             player = intent.getSerializableExtra("player", Player::class.java)!!
-        }else {
+        } else {
             player = intent.getSerializableExtra("player") as Player
         }
 
@@ -90,6 +93,7 @@ class ScoreboardActivity : AppCompatActivity() {
         }
         setResult(RESULT_OK, intentResult)
     }
+
     /**
      * Clears stored addition scores in SharedPreferences.
      */
@@ -103,6 +107,7 @@ class ScoreboardActivity : AppCompatActivity() {
             apply()
         }
     }
+
     /**
      * Clears stored subtraction scores in SharedPreferences.
      */
@@ -115,6 +120,7 @@ class ScoreboardActivity : AppCompatActivity() {
             apply()
         }
     }
+
     /**
      * Clears stored multiplication scores in SharedPreferences.
      */
@@ -127,6 +133,7 @@ class ScoreboardActivity : AppCompatActivity() {
             apply()
         }
     }
+
     /**
      * Clears stored division scores in SharedPreferences.
      */
@@ -139,43 +146,47 @@ class ScoreboardActivity : AppCompatActivity() {
             apply()
         }
     }
+
     /**
      * Loads and displays addition scores.
      */
-    fun getAddScores (){
+    fun getAddScores() {
         val sharedPref = getSharedPreferences("addition_score", MODE_PRIVATE)
         addWins = sharedPref.getInt("add_wins", 0)
         addLoses = sharedPref.getInt("add_loses", 0)
 
         addScoreTextSbA.text = "Addition (+) \n Wins : $addWins \n Loses : $addLoses"
     }
+
     /**
      * Loads and displays subtraction scores.
      */
-    fun getSubScores (){
+    fun getSubScores() {
         val sharedPref = getSharedPreferences("subtraction_score", MODE_PRIVATE)
         subWins = sharedPref.getInt("sub_wins", 0)
         subLoses = sharedPref.getInt("sub_loses", 0)
 
         subScoreTextSbA.text = "Subtraction (-) \n Wins : $subWins \n Loses : $subLoses"
     }
+
     /**
      * Loads and displays multiplication scores.
      */
-    fun getMultiScores (){
+    fun getMultiScores() {
         val sharedPref = getSharedPreferences("multiplication_score", MODE_PRIVATE)
         multiWins = sharedPref.getInt("multi_wins", 0)
         multiLoses = sharedPref.getInt("multi_loses", 0)
 
         multiScoreTextSbA.text = "Multiplication (*) \n Wins : $multiWins \n Loses : $multiLoses"
     }
+
     /**
      * Loads and displays division scores.
      */
-    fun getDivScores () {
+    fun getDivScores() {
         val sharedPref = getSharedPreferences("division_score", MODE_PRIVATE)
-        divWins = sharedPref.getInt("div_wins",0)
-        divLoses = sharedPref.getInt("div_loses",0)
+        divWins = sharedPref.getInt("div_wins", 0)
+        divLoses = sharedPref.getInt("div_loses", 0)
 
         divScoreTextSbA.text = "Division (/) \n Wins : $divWins \n Loses : $divLoses"
 

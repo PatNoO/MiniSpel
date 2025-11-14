@@ -10,6 +10,7 @@ import android.widget.Spinner
 import android.widget.TextView
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
+
 /**
  * MainActivity is the central hub of the math game.
  * It displays the menu, greets the player, and allows navigation
@@ -21,9 +22,9 @@ import androidx.appcompat.app.AppCompatActivity
  * @property headTextMa Greeting text showing the player name.
  */
 class MainActivity : AppCompatActivity() {
-    private var player: Player? = Player ("Default",0,0)
+    private var player: Player? = Player("Default", 0, 0)
     private lateinit var spinnerMa: Spinner
-    private lateinit var winLoseInfoTextMa : TextView
+    private lateinit var winLoseInfoTextMa: TextView
     private lateinit var headTextMa: TextView
 
     /**
@@ -32,19 +33,20 @@ class MainActivity : AppCompatActivity() {
      *
      * @param result The activity result containing updated Intent data.
      */
-    private val startLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
-            result ->
-        if (result.resultCode == RESULT_OK) {
-            val playerUpdated = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-                result.data?.getSerializableExtra("player_updated", Player::class.java)
-            }else {
-                result.data?.getSerializableExtra("player_updated") as Player
+    private val startLauncher =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            if (result.resultCode == RESULT_OK) {
+                val playerUpdated = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                    result.data?.getSerializableExtra("player_updated", Player::class.java)
+                } else {
+                    result.data?.getSerializableExtra("player_updated") as Player
+                }
+                player = playerUpdated
+                showGreeting()
+                showWinLose()
             }
-            player = playerUpdated
-            showGreeting()
-            showWinLose()
         }
-    }
+
     /**
      * Called when the activity is created.
      * Launches StartActivity to let the user enter their name,
@@ -71,15 +73,17 @@ class MainActivity : AppCompatActivity() {
     /**
      * Updates the TextView showing the player's total wins and losses.
      */
-    fun showWinLose () {
+    fun showWinLose() {
         winLoseInfoTextMa.text = getString(R.string.total_wins_loses, player?.wins, player?.loses)
     }
+
     /**
      * Updates the greeting text to show the player's name.
      */
-    fun showGreeting () {
+    fun showGreeting() {
         headTextMa.text = getString(R.string.greeting, player?.name)
     }
+
     /**
      * Called when returning to this activity.
      * Reinitializes the spinner so the menu always works.
@@ -88,6 +92,7 @@ class MainActivity : AppCompatActivity() {
         super.onResume()
         spinner()
     }
+
     /**
      * Sets up and populates the category selection spinner.
      * Adds an event listener to react when the user selects a category.
@@ -123,6 +128,7 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
+
     /**
      * Handles navigation based on the spinner selection.
      * Launches the correct activity depending on chosen category.

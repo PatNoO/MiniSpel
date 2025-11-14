@@ -18,7 +18,7 @@ import com.google.android.material.textfield.TextInputEditText
 
 class MultiActivity : AppCompatActivity() {
 
-    private lateinit var player : Player
+    private lateinit var player: Player
     private lateinit var questionTextMuA: TextView
 
     private lateinit var winLoseTextMuA: TextView
@@ -88,11 +88,11 @@ class MultiActivity : AppCompatActivity() {
 
         if (userAnswer == correctAnswer) {
             wins++
-            player.wins ++
+            player.wins++
             winLoseTextMuA.text = getString(R.string.correct_answer)
         } else {
             loses++
-            player.loses ++
+            player.loses++
             winLoseTextMuA.text = getString(R.string.wrong_answer)
         }
 
@@ -135,7 +135,6 @@ class MultiActivity : AppCompatActivity() {
 
         when (position) {
             0 -> {
-                Toast.makeText(this, "Your choice ' Easy ' ", Toast.LENGTH_SHORT).show()
                 firstNumber = (1..10).random()
                 secondNumber = (1..10).random()
                 correctAnswer = firstNumber * secondNumber
@@ -144,7 +143,6 @@ class MultiActivity : AppCompatActivity() {
             }
 
             1 -> {
-                Toast.makeText(this, "Your choice ' Medium ' ", Toast.LENGTH_SHORT).show()
                 firstNumber = (10..20).random()
                 secondNumber = (10..30).random()
                 correctAnswer = firstNumber * secondNumber
@@ -153,7 +151,6 @@ class MultiActivity : AppCompatActivity() {
             }
 
             2 -> {
-                Toast.makeText(this, "Your choice ' Hard ' ", Toast.LENGTH_SHORT).show()
                 firstNumber = (10..30).random()
                 secondNumber = (10..40).random()
                 correctAnswer = firstNumber * secondNumber
@@ -162,7 +159,6 @@ class MultiActivity : AppCompatActivity() {
             }
 
             3 -> {
-                Toast.makeText(this, "Your choice ' SuperHard ' ", Toast.LENGTH_SHORT).show()
                 firstNumber = (30..100).random()
                 secondNumber = (20..350).random()
                 correctAnswer = firstNumber * secondNumber
