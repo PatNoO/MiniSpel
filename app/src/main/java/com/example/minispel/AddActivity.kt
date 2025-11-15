@@ -89,10 +89,12 @@ class AddActivity : AppCompatActivity() {
         if (userAnswer == correctAnswer) {
             wins++
             player.wins ++
+            // Prints Win @String !
             winLoseTextAdA.text = getString(R.string.correct_answer)
         } else {
             loses++
             player.loses ++
+            // Prints Lose @String !
             winLoseTextAdA.text = getString(R.string.wrong_answer)
         }
         sharedPref.edit().apply {
