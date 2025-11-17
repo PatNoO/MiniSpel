@@ -10,6 +10,10 @@ import android.widget.Spinner
 import android.widget.TextView
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
+import com.example.minispel.math.activitys.AddActivity
+import com.example.minispel.math.activitys.DivActivity
+import com.example.minispel.math.activitys.MultiActivity
+import com.example.minispel.math.activitys.SubActivity
 
 /**
  * MainActivity is the central hub of the math game.

@@ -18,16 +18,16 @@
             android:name=".StartActivity"
             android:exported="false" />
         <activity
-            android:name=".DivActivity"
+            android:name=".math.activitys.DivActivity"
             android:exported="false" />
         <activity
-            android:name=".MultiActivity"
+            android:name=".math.activitys.MultiActivity"
             android:exported="false" />
         <activity
-            android:name=".SubActivity"
+            android:name=".math.activitys.SubActivity"
             android:exported="false" />
         <activity
-            android:name=".AddActivity"
+            android:name=".math.activitys.AddActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"

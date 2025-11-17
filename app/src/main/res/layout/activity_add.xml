@@ -6,7 +6,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AddActivity">
+    tools:context=".math.activitys.AddActivity">
 
     <ImageView
         android:id="@+id/imageViewAcA"
@@ -20,7 +20,7 @@
         app:srcCompat="@drawable/mathbackroundother" />
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/cardView"
+        android:id="@+id/cardView_aca"
         android:layout_width="252dp"
         android:layout_height="230dp"
         android:layout_marginTop="150dp"
@@ -82,7 +82,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardView" />
+        app:layout_constraintTop_toBottomOf="@+id/cardView_aca" />
 
     <Spinner
         android:id="@+id/spinnerDifficultyAcA"

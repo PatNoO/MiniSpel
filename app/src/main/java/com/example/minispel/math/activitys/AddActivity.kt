@@ -1,5 +1,7 @@
-package com.example.minispel
+package com.example.minispel.math.activitys
 
+
+import com.example.minispel.fragments.WinOutputFragment
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
@@ -10,8 +12,10 @@ import android.widget.Button
 import android.widget.Spinner
 import android.widget.TextView
 import android.widget.Toast
-import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
+import com.example.minispel.fragments.LoseOutputFragment
+import com.example.minispel.Player
+import com.example.minispel.R
 import com.google.android.material.textfield.TextInputEditText
 
 
@@ -37,6 +41,7 @@ class AddActivity : AppCompatActivity() {
         winLoseTextAdA = findViewById(R.id.resultViewAcA)
         answerInputAdA = findViewById(R.id.answerInputAda)
 
+
         spinner()
 
         val enterButtonAdA = findViewById<Button>(R.id.enterButtonAcA)
@@ -56,9 +61,51 @@ class AddActivity : AppCompatActivity() {
 
         // Go back to MainActivity
         backButtonAdA.setOnClickListener {
+            removeWinOutputFragment()
+            removeLoseOutputFragment()
             finish()
         }
     }
+
+    fun addWinOutputFragment() {
+        val addWinOutputFragment = WinOutputFragment()
+        val transaction = supportFragmentManager.beginTransaction()
+        transaction.add(R.id.cardView_aca, addWinOutputFragment, "win_output_fragment")
+        transaction.commit()
+    }
+
+    fun removeWinOutputFragment() {
+        val removeWinOutputFragment =
+            supportFragmentManager.findFragmentByTag("win_output_fragment")
+
+        if (removeWinOutputFragment != null) {
+            val transaction = supportFragmentManager.beginTransaction()
+            transaction.remove(removeWinOutputFragment)
+            transaction.commit()
+        } else {
+            Toast.makeText(this, "No Win Fragment found", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    fun addLoseOutputFragment() {
+        val addLoseOutputFragment = LoseOutputFragment()
+        val transaction = supportFragmentManager.beginTransaction()
+        transaction.add(R.id.cardView_aca, addLoseOutputFragment, "lose_output_fragment")
+        transaction.commit()
+    }
+
+    fun removeLoseOutputFragment() {
+        val removeLoseOutputFragment = LoseOutputFragment()
+
+        if (removeLoseOutputFragment != null) {
+            val transaction = supportFragmentManager.beginTransaction()
+            transaction.remove(removeLoseOutputFragment)
+            transaction.commit()
+        } else {
+            Toast.makeText(this, "No Lose Fragment found", Toast.LENGTH_SHORT).show()
+        }
+    }
+
     /**
      * Checks the user's answer, updates Player and SharedPreferences,
      * and displays the result.
@@ -90,11 +137,13 @@ class AddActivity : AppCompatActivity() {
             wins++
             player.wins ++
             // Prints Win @String !
+            addWinOutputFragment()
             winLoseTextAdA.text = getString(R.string.correct_answer)
         } else {
             loses++
             player.loses ++
             // Prints Lose @String !
+            addLoseOutputFragment()
             winLoseTextAdA.text = getString(R.string.wrong_answer)
         }
         sharedPref.edit().apply {

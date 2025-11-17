@@ -1,4 +1,4 @@
-package com.example.minispel
+package com.example.minispel.math.activitys
 
 import android.content.Intent
 import android.os.Build
@@ -11,6 +11,8 @@ import android.widget.Spinner
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.minispel.Player
+import com.example.minispel.R
 import com.google.android.material.textfield.TextInputEditText
 
 class SubActivity : AppCompatActivity() {
