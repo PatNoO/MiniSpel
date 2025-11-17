@@ -109,7 +109,8 @@ class MainActivity : AppCompatActivity() {
                 "Subtration (-)",
                 "Multiplikation (*)",
                 "division (/)",
-                "ScoreBoard"
+                "ScoreBoard",
+                "Word Game"
             )
         val spinnerAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, categories)
         spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
@@ -171,6 +172,9 @@ class MainActivity : AppCompatActivity() {
                 val intent = Intent(this, ScoreboardActivity::class.java)
                 intent.putExtra("player", player)
                 startLauncher.launch(intent)
+            }
+            6 -> {
+
             }
         }
 

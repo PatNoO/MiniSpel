@@ -5,6 +5,7 @@ import com.example.minispel.fragments.WinOutputFragment
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
+import android.view.MotionEvent
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
@@ -61,10 +62,17 @@ class AddActivity : AppCompatActivity() {
 
         // Go back to MainActivity
         backButtonAdA.setOnClickListener {
-            removeWinOutputFragment()
-            removeLoseOutputFragment()
             finish()
         }
+    }
+
+    override fun onTouchEvent(event: MotionEvent?): Boolean {
+
+        if (event?.action == MotionEvent.ACTION_UP){
+            removeLoseOutputFragment()
+            removeWinOutputFragment()
+        }
+        return true
     }
 
     fun addWinOutputFragment() {
@@ -82,8 +90,7 @@ class AddActivity : AppCompatActivity() {
             val transaction = supportFragmentManager.beginTransaction()
             transaction.remove(removeWinOutputFragment)
             transaction.commit()
-        } else {
-            Toast.makeText(this, "No Win Fragment found", Toast.LENGTH_SHORT).show()
+
         }
     }
 
@@ -95,15 +102,14 @@ class AddActivity : AppCompatActivity() {
     }
 
     fun removeLoseOutputFragment() {
-        val removeLoseOutputFragment = LoseOutputFragment()
+        val removeLoseOutputFragment = supportFragmentManager.findFragmentByTag("lose_output_fragment")
 
         if (removeLoseOutputFragment != null) {
             val transaction = supportFragmentManager.beginTransaction()
             transaction.remove(removeLoseOutputFragment)
             transaction.commit()
-        } else {
-            Toast.makeText(this, "No Lose Fragment found", Toast.LENGTH_SHORT).show()
         }
+
     }
 
     /**
